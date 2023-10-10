@@ -41,5 +41,5 @@ See the location of items on loan.
 
 Exit the program.
 
-Contributors
+# Contributors
 Isha Saini

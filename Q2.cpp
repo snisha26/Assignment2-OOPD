@@ -353,6 +353,47 @@ int num=0;
     
 };
 
+void user :: borrow_on_loan()
+{
+    //string title;
+    //string author;
+    //int bid;
+   /* cout<<"Enter bookid: ";
+    cin>>bid;
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout<<"Enter book title:";
+    getline(cin,title);
+    cout<<"Enter author:";
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    getline(cin,author);*/
+            cout<<"Librarian Admin portal initialized:";
+            cout<<"\nEnter the library from where you want to loan the item:";
+            cin>>B[num].b_location;
+            cout<<"\nEnter the item id:";
+            cin>>B[num].id;
+            cout<<"\nEnter request date:";
+            cin>>B[num].req_date;
+            cout<<"\nItem will be issued within 7 days from the request date.\n";
+            num++;
+
+}
+void user :: b_on_loan_location()
+{
+     int ch,id;
+    cout<<"Enter the item id you want location for:\n";
+    cin>>id;
+    for(int i =0;i<100;i++)
+    {
+        if(B[i].id == id)
+        {
+            ch = i;
+            break;
+
+        }
+    }
+    
+    cout<<"\nItem present in Library:"<<B[ch].b_location<<endl;
+}
 
 class Librarian: public books
 {

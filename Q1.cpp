@@ -378,3 +378,153 @@ class Librarian: public books
 
 };
 
+//main function
+int main()
+{
+    char ch, choice;
+    Library b;
+    int copies, phone, id, password;
+    string name_of_book, name, type, title, author, e_item, rank, J;
+    Librarian L;
+    b.read_books();
+    b.read_magazines();
+    b.read_journal();
+    while(1)
+    {cout<<"Library Portal:\n";
+    cout<<"1.Enter as Librarian\n";
+    cout<<"2.Enter as Member\n";
+    cout<<"3.Exit\n";
+    cout<<"Enter your choice:";
+    cin>>ch;
+    user u;
+    switch(ch)
+    {
+        case '1':   
+                    L.purchase_books();
+                    break;
+        case '2': 
+                while(1)
+                {
+                cout<<"Member portal:\n";
+                cout<<"1. New Registeration"<<endl;
+                cout<<"2. Issue Item"<<endl;
+                cout<<"3. Query location for some Item"<<endl;
+                cout<<"4. Exit"<<endl;
+                cout<<"Enter your choice:"<<endl;
+                cin>>choice;
+                
+                switch(choice)
+                {
+                    case '1': 
+                                cout<<"Enter user id:";
+                                cin>>id;
+                                cout<<"Enter user name:";
+                                getline(cin,name);
+                                cout<<"Enter user type:";
+                                getline(cin,type);
+                                cout<<"Enter user phone no.";
+                                cin>>phone;
+                                u.registration(name, type, phone, id);
+                                break;
+                    case '2':   int ch_item;
+                                cout<<"Enter Item to be issued: \n 1.Book\n 2.Magazines\n 3.Journal\n 4.Ebooks\n 5.Electronics Items\nEnter your choice: ";
+                                cin>>ch_item;
+                                switch(ch_item)
+                                {
+                                    case 1: 
+                                              int book_id;
+                                              cout<<"Enter book id to be issued: ";
+                                              cin>>book_id;
+                                              u.borrow_books(book_id);
+                                              break;
+                                    case 2:   
+                                              //string name;
+                                              cout<<"Enter Magazine name: ";
+                                              getline(cin,name);
+                                              u.borrow_magJ(name);
+                                              break;
+                                    case 3:   //string J;
+                                              cout<<"Enter Journal name:";
+                                              getline(cin,J);
+                                              u.borrow_magJ(J);
+                                              break;
+                                    case 4:   //string title, author;
+                                              cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                                              cout<<"Enter Ebook name:";
+                                              getline(cin,title);
+                                              cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                                              cout<<"Enter Ebook author";
+                                              getline(cin,author);
+                                              cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                                              cout<<"Ebook "<<title<<" issued successfully!";
+                                              break;
+                                    case 5:   //string e_item;
+                                              cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                                              cout<<"Enter which electronic item do you want?";
+                                              getline(cin,e_item);
+                                              cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                                              cout<<"Electronic item "<<e_item<<" issued successfully";
+                                              break;
+                                    default : cout<<"Invalid option";
+                                              break;
+                             }
+                             break;
+                    case '3':   int choice_loc;
+                                
+                                cout<<"Enter Item to search for location: \n 1.Book\n 2.Magazines\n 3.Journal\n";
+                                cin>>choice_loc;
+                                switch(choice_loc)
+                                {
+                                    case 1: int book_id, ISBN;
+                                              //string author;
+                                              cout<<"Enter book id: ";
+                                              cin>>book_id;
+                                              cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                                              cout<<"\nEnter book author: ";
+                                              getline(cin,author);
+                                              cout<<"\nEnter book ISBN: ";
+                                              cin>>ISBN;
+                                              u.location_books(book_id, author, ISBN);
+                                              break;
+                                    case 2:   
+                                              //string name;
+                                              //string rank;
+                                              cout<<"Enter Magazine name: ";
+                                              getline(cin,name);
+                                              cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                                              cout<<"Enter Magazine rank: ";
+                                              getline(cin,rank);
+                                              u.location_mag(name, rank);
+                                              break;
+                                    case 3:
+                                              //string J;
+                                              cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                                              cout<<"Enter Journal name:";
+                                              getline(cin,J);
+                                              u.location_Journal(J);
+                                              break;
+                                    default : 
+                                              cout<<"Invalid option";
+                                              break;
+                             }
+                             break;
+                    case '4': cout<<"\nThanks for visiting the library!";
+                              exit(0);
+                    default: cout<<"Invalid option";
+                             break;
+                }
+                }
+                break;
+        case '3': cout<<"\nThanks for visiting the library!";
+                  exit(0); 
+
+        default : cout<<"Invalid option";
+                  break;
+
+    }  
+    }
+    return 0;
+
+}
+
+
